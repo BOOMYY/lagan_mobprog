@@ -4,6 +4,8 @@ import 'package:lagan_mobprog/screens/newsfeed_screen.dart';
 import 'package:lagan_mobprog/widget/custom_text.dart';
 import 'package:material_ui/material_ui.dart';
 
+import 'notification_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -31,7 +33,11 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: PageView(
         controller: _pageController,
-        children: const <Widget>[NewsfeedScreen()],
+        children: const <Widget>[
+          // Add the NotificationScreen widget to the PageView
+          NewsfeedScreen(),
+          NotificationScreen(),
+        ],
         onPageChanged: (page) {
           setState(() {
             _selectedIndex = page;
@@ -49,6 +55,8 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Icon(Icons.notifications),
             label: 'Notifications',
           ),
+          // add icon
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
         selectedItemColor: fbPrimary,
         currentIndex: _selectedIndex,

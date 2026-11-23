@@ -3,6 +3,8 @@ import 'package:lagan_mobprog/screens/home_screen.dart';
 import 'package:lagan_mobprog/screens/newsfeed_screen.dart';
 import 'package:material_ui/material_ui.dart';
 
+import 'screens/notification_screen.dart';
+
 void main() {
   runApp(const MainApp());
 }
@@ -22,8 +24,10 @@ class MainApp extends StatelessWidget {
           title: "Facebook Replication",
           initialRoute: "/home",
           routes: {
-            "/newsfeed": (context) => const NewsfeedScreen(),
             "/home": (context) => const HomeScreen(),
+            "/newsfeed": (context) => const NewsfeedScreen(),
+            // add route for notification screen
+            "/notifications": (context) => const NotificationScreen(),
           },
         );
       },
