@@ -21,15 +21,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        shadowColor: fbTextColorWhite,
+        shadowColor: fbLightPrimary,
         elevation: 2,
-        title: CustomText(
-          text: 'Facebook',
-          fontSize: ScreenUtil().setSp(25),
-          color: fbPrimary,
-          fontFamily: 'Klavika',
-          fontWeight: FontWeight(700),
-        ),
+        // 2 dynamic app bar title based on selected index
+        title: _buildAppBarTitle(),
       ),
       body: PageView(
         controller: _pageController,
@@ -55,10 +50,11 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Icon(Icons.notifications),
             label: 'Notifications',
           ),
-          // add icon
+          // 3 add icon
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
-        selectedItemColor: fbPrimary,
+        unselectedItemColor: fbTextColorWhite,
+        selectedItemColor: fbDarkPrimary,
         currentIndex: _selectedIndex,
       ),
     );
@@ -69,5 +65,24 @@ class _HomeScreenState extends State<HomeScreen> {
       _selectedIndex = value;
     });
     _pageController.jumpToPage(value);
+  }
+
+  Widget _buildAppBarTitle() {
+    if (_selectedIndex == 1) {
+      return CustomText(
+        text: 'Notifications',
+        fontSize: ScreenUtil().setSp(25),
+        color: fbTextColorWhite,
+        fontFamily: 'Klavika',
+        fontWeight: FontWeight(800),
+      );
+    }
+    return CustomText(
+      text: 'Joshua FYP',
+      fontSize: ScreenUtil().setSp(25),
+      color: fbPrimary,
+      fontFamily: 'Klavika',
+      fontWeight: FontWeight(800),
+    );
   }
 }
