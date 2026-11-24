@@ -21,6 +21,7 @@ class NewsfeedScreen extends StatelessWidget {
           date: 'December 1, 2023',
           numOfLikes: 3000,
           hasImage: true,
+          // imagePath: 'assets/images/iron_man.jpg',
         ),
       ],
     );

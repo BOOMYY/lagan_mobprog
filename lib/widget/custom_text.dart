@@ -20,6 +20,7 @@ class CustomText extends StatelessWidget {
   final TextAlign textAlign;
   final String fontFamily;
   final FontStyle fontStyle;
+  final bool appBarTitle = false;
 
   @override
   Widget build(BuildContext context) {

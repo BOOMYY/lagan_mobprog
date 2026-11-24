@@ -22,8 +22,9 @@ class NewsfeedCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenUtilSp = ScreenUtil().setSp(10);
     final screenUtilWidth = ScreenUtil().setWidth(10);
-    final screenUtilFontUserNameSize = ScreenUtil().setSp(15);
     final screenUtilIconSize = ScreenUtil().setSp(15);
+
+    final placeholderHeight = ScreenUtil().setHeight(180);
 
     return Card(
       margin: EdgeInsets.all(screenUtilSp),
@@ -42,7 +43,7 @@ class NewsfeedCard extends StatelessWidget {
                   children: [
                     CustomText(
                       text: userName,
-                      fontSize: screenUtilFontUserNameSize,
+                      fontSize: ScreenUtil().setSp(14),
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),
@@ -99,10 +100,16 @@ class NewsfeedCard extends StatelessWidget {
                     color: fbDarkPrimary,
                   ),
                 ),
-                CustomText(
-                  text: 'Comment',
-                  fontSize: ScreenUtil().setSp(12),
-                  color: fbDarkPrimary,
+                TextButton.icon(
+                  onPressed: () {
+                    // print('Comment button pressed');
+                  },
+                  icon: Icon(Icons.comment, color: fbDarkPrimary),
+                  label: CustomText(
+                    text: 'Comment',
+                    fontSize: ScreenUtil().setSp(12),
+                    color: fbDarkPrimary,
+                  ),
                 ),
                 TextButton.icon(
                   onPressed: () {},
@@ -151,6 +158,25 @@ class NewsfeedCard extends StatelessWidget {
               color: Colors.black,
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget placeHolderWidget(double placeholderHeight) {
+    return Container(
+      height: placeholderHeight,
+      width: double.infinity,
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        color: Colors.grey[200],
+        borderRadius: BorderRadius.circular(ScreenUtil().setSp(8)),
+      ),
+      child: Center(
+        child: Icon(
+          Icons.broken_image_outlined,
+          size: ScreenUtil().setSp(100),
+          color: Colors.grey,
         ),
       ),
     );
