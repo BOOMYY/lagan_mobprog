@@ -22,8 +22,9 @@ class NewsfeedCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenUtilSp = ScreenUtil().setSp(10);
     final screenUtilWidth = ScreenUtil().setWidth(10);
-    final screenUtilFontUserNameSize = ScreenUtil().setSp(15);
     final screenUtilIconSize = ScreenUtil().setSp(15);
+
+    final placeholderHeight = ScreenUtil().setHeight(180);
 
     return Card(
       margin: EdgeInsets.all(screenUtilSp),
@@ -35,14 +36,14 @@ class NewsfeedCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Icon(Icons.person),
+                Icon(Icons.person_3, color: fbLightPrimary),
                 SizedBox(width: screenUtilWidth),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomText(
                       text: userName,
-                      fontSize: screenUtilFontUserNameSize,
+                      fontSize: ScreenUtil().setSp(14),
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),
@@ -79,8 +80,7 @@ class NewsfeedCard extends StatelessWidget {
             SizedBox(height: ScreenUtil().setHeight(5)),
             hasImage == true
                 ? const Image(image: AssetImage('assets/images/iron_man.jpg'))
-                : SizedBox.shrink(),
-
+                : placeHolderWidget(placeholderHeight),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -88,21 +88,27 @@ class NewsfeedCard extends StatelessWidget {
                   onPressed: () {
                     // print('Like button pressed');
                   },
-                  icon: Icon(Icons.thumb_up, color: fbPrimary),
+                  icon: Icon(Icons.thumb_up_outlined, color: fbPrimary),
                   label: CustomText(
                     text: numOfLikes.toString(),
                     fontSize: ScreenUtil().setSp(12),
-                    color: fbDarkPrimary  ,
+                    color: fbDarkPrimary,
                   ),
                 ),
-                CustomText(
-                  text: 'Comment',
-                  fontSize: ScreenUtil().setSp(12),
-                  color: fbDarkPrimary,
+                TextButton.icon(
+                  onPressed: () {
+                    // print('Comment button pressed');
+                  },
+                  icon: Icon(Icons.comment, color: fbDarkPrimary),
+                  label: CustomText(
+                    text: 'Comment',
+                    fontSize: ScreenUtil().setSp(12),
+                    color: fbDarkPrimary,
+                  ),
                 ),
                 TextButton.icon(
                   onPressed: () {},
-                  icon: Icon(Icons.redo, color: fbDarkPrimary),
+                  icon: Icon(Icons.share, color: fbDarkPrimary),
                   label: CustomText(
                     text: 'Share',
                     fontSize: ScreenUtil().setSp(12),
@@ -147,6 +153,25 @@ class NewsfeedCard extends StatelessWidget {
               color: Colors.black,
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget placeHolderWidget(double placeholderHeight) {
+    return Container(
+      height: placeholderHeight,
+      width: double.infinity,
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        color: Colors.grey[200],
+        borderRadius: BorderRadius.circular(ScreenUtil().setSp(8)),
+      ),
+      child: Center(
+        child: Icon(
+          Icons.broken_image_outlined,
+          size: ScreenUtil().setSp(100),
+          color: Colors.grey,
         ),
       ),
     );

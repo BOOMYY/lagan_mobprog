@@ -1,4 +1,5 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lagan_mobprog/constant.dart';
 import 'package:lagan_mobprog/widget/custom_text.dart';
 import 'package:material_ui/material_ui.dart';
 
@@ -28,18 +29,18 @@ class NotificationWidget extends StatelessWidget {
               CustomText(
                 text: name,
                 fontSize: ScreenUtil().setSp(20),
-                color: Colors.black,
+                color: fbDarkPrimary,
                 fontWeight: FontWeight.w800,
               ),
               CustomText(
                 text: 'Post: $post',
                 fontSize: ScreenUtil().setSp(13),
-                color: Colors.black,
+                color: fbDarkPrimary,
               ),
               CustomText(
                 text: description,
                 fontSize: ScreenUtil().setSp(12),
-                color: Colors.black,
+                color: fbDarkPrimary,
                 fontStyle: FontStyle.italic,
               ),
             ],
