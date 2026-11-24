@@ -36,7 +36,7 @@ class NewsfeedCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Icon(Icons.person_3, color: fbLightPrimary),
+                Icon(Icons.person_3_rounded),
                 SizedBox(width: screenUtilWidth),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,8 +58,8 @@ class NewsfeedCard extends StatelessWidget {
                         ),
                         SizedBox(width: ScreenUtil().setWidth(3)),
                         Icon(
-                          Icons.public,
-                          color: Colors.grey,
+                          Icons.public_rounded,
+                          color: Colors.blueGrey,
                           size: screenUtilIconSize,
                         ),
                       ],
@@ -67,7 +67,7 @@ class NewsfeedCard extends StatelessWidget {
                   ],
                 ),
                 Spacer(),
-                Icon(Icons.more_horiz),
+                Icon(Icons.expand_more_sharp),
               ],
             ),
             SizedBox(height: ScreenUtil().setHeight(5)),
@@ -79,8 +79,13 @@ class NewsfeedCard extends StatelessWidget {
             ),
             SizedBox(height: ScreenUtil().setHeight(5)),
             hasImage == true
-                ? const Image(image: AssetImage('assets/images/iron_man.jpg'))
-                : placeHolderWidget(placeholderHeight),
+                ? const Image(
+                    image: NetworkImage(
+                      'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
+                    ),
+                  )
+                : SizedBox.shrink(),
+
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -88,7 +93,7 @@ class NewsfeedCard extends StatelessWidget {
                   onPressed: () {
                     // print('Like button pressed');
                   },
-                  icon: Icon(Icons.thumb_up_outlined, color: fbPrimary),
+                  icon: Icon(Icons.thumb_up_rounded, color: fbPrimary),
                   label: CustomText(
                     text: numOfLikes.toString(),
                     fontSize: ScreenUtil().setSp(12),
@@ -108,7 +113,7 @@ class NewsfeedCard extends StatelessWidget {
                 ),
                 TextButton.icon(
                   onPressed: () {},
-                  icon: Icon(Icons.share, color: fbDarkPrimary),
+                  icon: Icon(Icons.share_sharp, color: fbDarkPrimary),
                   label: CustomText(
                     text: 'Share',
                     fontSize: ScreenUtil().setSp(12),
