@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        shadowColor: fbLightPrimary,
+        // shadowColor: fbLightPrimary,
         elevation: 2,
         // 2 dynamic app bar title based on selected index
         title: _buildAppBarTitle(),
