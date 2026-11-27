@@ -3,14 +3,16 @@ import 'package:lagan_mobprog/constant.dart';
 import 'package:lagan_mobprog/widget/custom_text.dart';
 import 'package:material_ui/material_ui.dart';
 
-class NotificationWidget extends StatelessWidget {
-  const NotificationWidget({
+class CustomInfo extends StatelessWidget {
+  const CustomInfo({
     super.key,
     required this.name,
     required this.post,
     required this.description,
+    this.avatarImage,
   });
 
+  final String? avatarImage;
   final String name;
   final String post;
   final String description;
@@ -21,7 +23,13 @@ class NotificationWidget extends StatelessWidget {
       padding: EdgeInsets.all(ScreenUtil().setSp(15)),
       child: Row(
         children: [
-          Icon(Icons.person),
+          CircleAvatar(
+            radius: ScreenUtil().setSp(25),
+            backgroundImage: avatarImage != null
+                ? NetworkImage(avatarImage!)
+                : null,
+            child: avatarImage == null ? Icon(Icons.person) : null,
+          ),
           SizedBox(width: ScreenUtil().setSp(10)),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,

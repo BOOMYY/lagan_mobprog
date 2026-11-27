@@ -78,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
       );
     }
     return CustomText(
-      text: 'Joshua FYP',
+      text: 'Newsfeed',
       fontSize: ScreenUtil().setSp(25),
       color: fbPrimary,
       fontFamily: 'Klavika',

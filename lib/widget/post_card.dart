@@ -3,19 +3,21 @@ import 'package:lagan_mobprog/constant.dart';
 import 'package:lagan_mobprog/widget/custom_text.dart';
 import 'package:material_ui/material_ui.dart';
 
-class NewsfeedCard extends StatelessWidget {
+class PostCard extends StatelessWidget {
   final String userName;
   final String postContent;
   final String date;
   final int? numOfLikes;
-  final bool? hasImage;
-  const NewsfeedCard({
+  final String? postImage;
+  final String? avatarImage;
+  const PostCard({
     super.key,
     required this.userName,
     required this.postContent,
     required this.date,
     this.numOfLikes,
-    this.hasImage,
+    this.postImage,
+    this.avatarImage,
   });
 
   @override
@@ -23,8 +25,6 @@ class NewsfeedCard extends StatelessWidget {
     final screenUtilSp = ScreenUtil().setSp(10);
     final screenUtilWidth = ScreenUtil().setWidth(10);
     final screenUtilIconSize = ScreenUtil().setSp(15);
-
-    final placeholderHeight = ScreenUtil().setHeight(180);
 
     return Card(
       margin: EdgeInsets.all(screenUtilSp),
@@ -36,7 +36,16 @@ class NewsfeedCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Icon(Icons.person_3_rounded),
+                CircleAvatar(
+                  radius: screenUtilSp,
+                  backgroundImage: avatarImage != null
+                      ? (avatarImage!.startsWith('http')
+                                ? NetworkImage(avatarImage!)
+                                : AssetImage(avatarImage!))
+                            as ImageProvider
+                      : null,
+                  child: avatarImage == null ? Icon(Icons.person) : null,
+                ),
                 SizedBox(width: screenUtilWidth),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,13 +87,11 @@ class NewsfeedCard extends StatelessWidget {
               color: Colors.black,
             ),
             SizedBox(height: ScreenUtil().setHeight(5)),
-            hasImage == true
-                ? const Image(
-                    image: NetworkImage(
-                      'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
-                    ),
-                  )
-                : SizedBox.shrink(),
+            postImage != null
+                ? postImage!.startsWith('http')
+                      ? Image.network(postImage!)
+                      : Image.asset(postImage!)
+                : const SizedBox.shrink(),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -158,25 +165,6 @@ class NewsfeedCard extends StatelessWidget {
               color: Colors.black,
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget placeHolderWidget(double placeholderHeight) {
-    return Container(
-      height: placeholderHeight,
-      width: double.infinity,
-      clipBehavior: Clip.antiAlias,
-      decoration: BoxDecoration(
-        color: Colors.grey[200],
-        borderRadius: BorderRadius.circular(ScreenUtil().setSp(8)),
-      ),
-      child: Center(
-        child: Icon(
-          Icons.broken_image_outlined,
-          size: ScreenUtil().setSp(100),
-          color: Colors.grey,
         ),
       ),
     );
